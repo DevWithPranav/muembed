@@ -93,12 +93,19 @@ def fetch_queries(muid):
 
     rank_list = db.fetch_all_data(rank_query, params)
 
+    data["rank"] = None
+    data["score"] = None
+    data["main_role"] = main_role
+
     count = 0
     for x in rank_list:
         count += 1
         if x[1] == data["muid"]:
             data["rank"] = count
             data["score"] = int(x[0])
-            data["main_role"] = main_role
+            break
+
+    if data["rank"] is None:
+        return None
 
     return data
