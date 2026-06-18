@@ -162,7 +162,8 @@ def get_muid(muid):
             text = ig
 
             font = ImageFont.truetype(font_med, size=font_size)
-            text_width, text_height = font.getsize(text)
+            bbox = font.getbbox(text)
+            text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
             rectangle_width = text_width + 2 * padding
             rectangle_height = 28
 
@@ -212,7 +213,8 @@ def get_muid(muid):
                 y = start_position[1]
                 x = start_position[0]
                 font = ImageFont.truetype(font_med, size=26)
-                commit_width, commit_height = font.getsize(str(total_commits))
+                commit_bbox = font.getbbox(str(total_commits))
+                commit_width, commit_height = commit_bbox[2] - commit_bbox[0], commit_bbox[3] - commit_bbox[1]
                 commit_box_width = commit_width + 2 * padding
                 commit_box_height = 43
 
@@ -234,7 +236,8 @@ def get_muid(muid):
                 y = start_position[1]
                 x = start_position[0]
                 font = ImageFont.truetype(font_med, size=26)
-                repo_width, repo_height = font.getsize(str(total_repos))
+                repo_bbox = font.getbbox(str(total_repos))
+                repo_width, repo_height = repo_bbox[2] - repo_bbox[0], repo_bbox[3] - repo_bbox[1]
                 repo_box_width = repo_width + 2 * padding
                 repo_box_height = 43
 
